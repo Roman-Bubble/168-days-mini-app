@@ -1,8 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-* { -webkit-tap-highlight-color: transparent; }
-body { background: radial-gradient(circle at top, #142036 0, #05070d 42%, #020307 100%); color: #fff; }
-.card { @apply rounded-2xl border border-white/10 bg-white/[0.045] shadow-glow backdrop-blur; }
-.tiny { @apply text-[10px] uppercase tracking-wider text-white/45; }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { background: #020307; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 122, 24, .20) 0, transparent 28rem),
+    radial-gradient(circle at 12% 22%, rgba(53, 243, 255, .08) 0, transparent 18rem),
+    linear-gradient(180deg, #08101f 0%, #020307 52%, #010204 100%);
+  color: #fff;
+  font-feature-settings: "tnum";
+}
+
+.scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+.card {
+  @apply rounded-[1.35rem] border border-white/10 bg-white/[0.045] shadow-glow backdrop-blur-xl;
+  background-image: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.026));
+}
+.premium-card { @apply relative overflow-hidden rounded-[1.35rem] border border-ember/20 bg-black/30 shadow-glow backdrop-blur-xl; }
+.premium-card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 0%, rgba(255,122,24,.22), transparent 32%),
+    linear-gradient(145deg, rgba(255,255,255,.08), transparent 45%);
+}
+.tiny { @apply text-[9px] font-extrabold uppercase tracking-[0.16em] text-white/40; }
 .tap { @apply transition duration-200 active:scale-[.98] hover:border-ember/60 hover:bg-white/[0.07]; }
+.noise { background-image: radial-gradient(rgba(255,255,255,.13) .55px, transparent .55px); background-size: 12px 12px; }
