@@ -7,48 +7,37 @@ export function VotingCard({ vote }: { vote: Vote }) {
   const [voted, setVoted] = useState(false);
 
   return (
-    <article
-      className={`card p-4 transition duration-300 ${
-        voted ? 'border-emerald-400/40 shadow-cyan' : ''
-      }`}
-    >
-      <div className="mb-2 flex items-center justify-between gap-3">
-        <span className="text-xs font-bold uppercase text-emerald-400">Active</span>
-        <span className="tiny whitespace-nowrap">Reward +10 XP</span>
+    <article className={`premium-card p-4 transition duration-300 ${voted ? 'border-emerald-400/40 shadow-cyan' : ''}`}>
+      <div className="relative mb-3 flex items-center justify-between gap-3">
+        <span className="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[.16em] text-emerald-300">Live vote</span>
+        <span className="rounded-full border border-ember/25 bg-ember/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[.14em] text-ember">Reward +10 XP</span>
       </div>
-      <h3 className="font-semibold leading-snug">{vote.title}</h3>
-      {vote.budget ? <p className="mt-1 text-xs text-white/50">Budget: {vote.budget}</p> : null}
+      <h3 className="relative text-[15px] font-black leading-snug tracking-tight">{vote.title}</h3>
+      {vote.budget ? <p className="relative mt-1 text-xs font-semibold text-white/50">Budget pool: {vote.budget}</p> : null}
 
-      <div className="mt-4 space-y-3">
-        {vote.options.map((option) => (
-          <div key={option.name}>
-            <div className="mb-1 flex justify-between gap-3 text-xs">
-              <span>{option.name}</span>
-              <span>{option.percent}%</span>
+      <div className="relative mt-4 space-y-3.5">
+        {vote.options.map((option, index) => (
+          <div key={option.name} className={voted && index === 0 ? 'rounded-xl border border-ember/20 bg-ember/5 p-2 -m-2' : ''}>
+            <div className="mb-1.5 flex justify-between gap-3 text-xs font-semibold">
+              <span className="text-white/80">{option.name}</span>
+              <span className="text-ember">{option.percent}%</span>
             </div>
-            <div className="h-1.5 overflow-hidden rounded bg-white/10">
-              <div
-                className="h-full rounded bg-gradient-to-r from-ember to-gold transition-all duration-500"
-                style={{ width: `${option.percent}%` }}
-              />
+            <div className="h-2 overflow-hidden rounded-full border border-white/5 bg-black/45 p-[2px]">
+              <div className="h-full rounded-full bg-gradient-to-r from-ember to-gold shadow-[0_0_14px_rgba(255,122,24,.65)] transition-all duration-700" style={{ width: `${option.percent}%` }} />
             </div>
           </div>
         ))}
       </div>
 
       {voted ? (
-        <div className="mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3 py-2 text-sm text-emerald-200 animate-pulse">
-          Your vote accepted · +10 XP
+        <div className="relative mt-4 flex items-center justify-between rounded-2xl border border-emerald-400/25 bg-emerald-400/10 px-3 py-2 text-sm font-bold text-emerald-100">
+          <span>Vote accepted</span>
+          <span className="rounded-full bg-emerald-300/15 px-2 py-0.5 text-xs text-emerald-200 animate-pulse">+10 XP</span>
         </div>
       ) : null}
 
-      <button
-        type="button"
-        disabled={voted}
-        onClick={() => setVoted(true)}
-        className="mt-4 w-full rounded-xl bg-gradient-to-r from-ember to-orange-500 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-glow transition active:scale-95 disabled:cursor-not-allowed disabled:from-emerald-500/30 disabled:to-emerald-400/20"
-      >
-        {voted ? 'Voted' : 'Vote'}
+      <button type="button" disabled={voted} onClick={() => setVoted(true)} className="relative mt-4 w-full rounded-2xl bg-gradient-to-r from-ember via-orange-500 to-gold py-3 text-sm font-black uppercase tracking-[.16em] text-white shadow-glow transition active:scale-95 disabled:cursor-not-allowed disabled:from-emerald-500/35 disabled:via-emerald-400/25 disabled:to-emerald-300/20">
+        {voted ? 'Voted' : 'Cast vote'}
       </button>
     </article>
   );

@@ -3,23 +3,20 @@ import { ProgressBar } from './ProgressBar';
 
 export function UserCard() {
   return (
-    <section className="card p-4">
-      <div className="flex items-center gap-3">
-        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-cyan/30 to-ember/30 text-2xl">
-          🧑🏻
-        </div>
+    <section className="premium-card p-4">
+      <div className="relative flex items-center gap-3">
+        <div className="grid h-14 w-14 place-items-center rounded-2xl border border-ember/30 bg-gradient-to-br from-[#1b2540] via-[#101522] to-ember/25 text-2xl shadow-glow">🧑🏻</div>
         <div className="min-w-0 flex-1">
-          <div className="font-semibold">{user.name}</div>
-          <div className="text-xs text-white/50">Level {user.level}</div>
+          <div className="text-[15px] font-black tracking-wide">{user.name}</div>
+          <div className="mt-0.5 text-[11px] font-semibold uppercase tracking-[.14em] text-ember/85">Level {user.level} founder</div>
         </div>
-        <div className="rounded-xl border border-ember/50 p-2 text-ember">⌬</div>
+        <div className="rounded-xl border border-ember/50 bg-ember/10 px-2.5 py-2 text-ember shadow-glow">⌬</div>
       </div>
-      <div className="mt-3 flex items-center justify-between text-xs">
-        <span>
-          XP {user.xp.toLocaleString()} / {user.xpMax.toLocaleString()}
-        </span>
+      <div className="relative mt-4 flex items-center justify-between text-[11px] font-semibold text-white/70">
+        <span>XP {user.xp.toLocaleString()}</span>
+        <span className="text-white/40">{user.xpMax.toLocaleString()}</span>
       </div>
-      <ProgressBar value={user.xp} max={user.xpMax} />
+      <div className="relative mt-1.5"><ProgressBar value={user.xp} max={user.xpMax} /></div>
     </section>
   );
 }
